@@ -34,12 +34,13 @@ function clear_paddle(){
 <!--SETS THE PARAMETERS TO THEIR INITIAL VALUES-->
 function reset(){
 	count=30;
-	isps=true;
+	isps=false;
 	r_pressed = l_pressed = false;
 	clear_paddle();
 	paddleX = (canvas.width-paddle_wd)/2;
 	x=paddleX+paddle_wd/2;
 	y=canvas.height-paddle_ht-30;
+	document.getElementById("capt").innerHTML="SPACE to PAUSE and ENTER to RESET";
 	dx = dy = 3;
 	for (var i = 0;i<5;i+=1){
 		for (var j=0;j<6;j+=1) mask[i][j]=1;
@@ -130,6 +131,10 @@ function draw_ball(){
 }
 
 function draw(){
+	if (count==0){
+		isps=true;
+		document.getElementById("capt").innerHTML="YOU WON! Press ENTER to RESET";
+	}
 	<!--ONLY MOVE THE BALL IF NOT PAUSE-->
 	if (isps==false){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
